@@ -1,0 +1,7 @@
+{
+	"api-2-be": 
+	{
+		"path": "../api-2-be",
+		"repository":"git@gitlab.motoblouz.com:dev/api-2-be.git"
+	}
+}
