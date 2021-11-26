@@ -12,13 +12,11 @@ function execute($current, $action, string $repository = null)
 {
     $globals = json_decode(file_get_contents('dependencies/global_dependencies.json'));
 
-    if (null === $repository) {
-        if (!is_dir('../' . $current)) {
-            downloadToRepo($globals->$current->repository);
-        }
+    if (!is_dir('../' . $current)) {
+        downloadToRepo($globals->$current->repository);
     }
+
     $make = 'cd ../' . $current . ' && make ' . $action . ' ';
-    $git = 'git clone ';
     $dependencies = $globals->$current->dependencies;
     foreach ($dependencies as $dependency) {
         execute($dependency, $action, $globals->$dependency->repository);
