@@ -1,6 +1,0 @@
-{
-        "front-api": {
-                "path": "../front-api",
-                "repository": "git@gitlab.motoblouz.com:dev/front-api.git"
-        }
-}

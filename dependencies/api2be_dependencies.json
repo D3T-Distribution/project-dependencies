@@ -1,6 +1,0 @@
-{
-    "atp": {
-                "path": "../atp",
-                "repository": "git@gitlab.motoblouz.com:dev/atp.git"
-        }
-}
