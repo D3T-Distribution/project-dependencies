@@ -20,7 +20,7 @@ function execute($current, $action, string $repository = null)
 
     $make = 'cd ../' . $current . ' && make ' . $action . ' ';
     $git = 'git clone ';
-    $dependencies = json_decode(file_get_contents($globals->$current->dependencies));
+    $dependencies = $globals->$current->dependencies;
     foreach ($dependencies as $dependency) {
         execute($globals->$dependency, $action, $globals->$dependency->repository);
     }
