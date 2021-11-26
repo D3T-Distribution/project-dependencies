@@ -30,7 +30,7 @@ function execute($current, $action, string $repository = null)
 
 function downloadToRepo($repository)
 {
-    exec('git clone ' . $repository);
+    exec('cd .. && git clone ' . $repository);
 }
 
 execute($current, $action);
