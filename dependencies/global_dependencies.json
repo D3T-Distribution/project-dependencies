@@ -1,17 +1,16 @@
 {
   "atp": {
-    "dependencies" : [],
+    "dependencies": [],
     "repository": "git@gitlab.motoblouz.com:dev/atp.git"
   },
-  "api-2-be":
-  {
-    "dependencies" : [
+  "api-2-be": {
+    "dependencies": [
       "atp"
     ],
-    "repository":"git@gitlab.motoblouz.com:dev/api-2-be.git"
+    "repository": "git@gitlab.motoblouz.com:dev/api-2-be.git"
   },
   "d3t-motoblouz-v3": {
-    "dependencies" : [],
+    "dependencies": [],
     "repository": "git@gitlab.motoblouz.com:root/d3t-motoblouz-v3.git"
   },
   "front-api": {
@@ -21,12 +20,12 @@
     ],
     "repository": "git@gitlab.motoblouz.com:dev/front-api.git"
   },
-    "front-client": {
-      "dependencies": [
-        "front-api"
-      ],
-      "repository": "git@gitlab.motoblouz.com:dev/front-client.git"
-    },
+  "front-client": {
+    "dependencies": [
+      "front-api"
+    ],
+    "repository": "git@gitlab.motoblouz.com:dev/front-client.git"
+  },
   "wms": {
     "dependencies": [
       "d3t-motoblouz-v3"

@@ -18,11 +18,13 @@ function execute($current, $action, string $repository = null)
         }
     }
 
+    var_dump($current, $action);
+    var_dump('----- + -----');
     $make = 'cd ../' . $current . ' && make ' . $action . ' ';
     $git = 'git clone ';
     $dependencies = $globals->$current->dependencies;
     foreach ($dependencies as $dependency) {
-        execute($globals->$dependency, $action, $globals->$dependency->repository);
+        execute($dependency, $action, $globals->$dependency->repository);
     }
     exec($make);
 }
