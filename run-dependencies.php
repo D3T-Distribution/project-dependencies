@@ -17,15 +17,13 @@ function execute($current, $action, string $repository = null)
             downloadToRepo($globals->$current->repository);
         }
     }
-
-    var_dump($current, $action);
-    var_dump('----- + -----');
     $make = 'cd ../' . $current . ' && make ' . $action . ' ';
     $git = 'git clone ';
     $dependencies = $globals->$current->dependencies;
     foreach ($dependencies as $dependency) {
         execute($dependency, $action, $globals->$dependency->repository);
     }
+    echo $make . PHP_EOL;
     exec($make);
 }
 
