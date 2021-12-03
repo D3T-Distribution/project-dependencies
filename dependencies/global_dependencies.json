@@ -43,5 +43,11 @@
       "api-2-be"
     ],
     "repository": "git@gitlab.motoblouz.com:dev/cashdesk.git"
+  },
+  "fluxx": {
+    "dependencies": [
+      "d3t-motoblouz-v3"
+    ],
+    "repository": "git@gitlab.motoblouz.com:dev/fluxx.git"
   }
 }

@@ -17,7 +17,7 @@ function execute($current, $action, string $repository = null)
     }
 
     $make = 'cd ../' . $current . ' && make ' . $action . ' ';
-    $dependencies = $globals->$current->dependencies;
+    $dependencies = $current->dependencies;
     foreach ($dependencies as $dependency) {
         execute($dependency, $action, $globals->$dependency->repository);
     }

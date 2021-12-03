@@ -1,0 +1,11 @@
+{
+    "name": "d3t-distribution/project-dependencies",
+    "license": "D3t-Distribution",
+    "authors": [
+        {
+            "name": "Hugo Duporge",
+            "email": "h.duporge@motoblouz.com"
+        }
+    ],
+    "require": {}
+}
