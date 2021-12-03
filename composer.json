@@ -1,6 +1,10 @@
 {
     "name": "d3t-distribution/project-dependencies",
-    "license": "D3t-Distribution",
+    "autoload": {
+        "psr-4": {
+            "D3tDistribution\\ProjectDependencies\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Hugo Duporge",
