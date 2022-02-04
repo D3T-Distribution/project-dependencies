@@ -11,5 +11,7 @@
             "email": "h.duporge@motoblouz.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-json": "*"
+    }
 }

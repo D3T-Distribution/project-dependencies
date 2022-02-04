@@ -1,28 +1,16 @@
 <?php
 
-$current = $argv[1];
-$action = $argv[2];
+$project = $argv[1];
+$command = $argv[2];
 
 /**
  * @param $current
  * @param $action
  * @param string|null $repository
  */
-function execute($current, $action, string $repository = null)
+function execute($project, $command, string $repository = null)
 {
-    $globals = json_decode(file_get_contents('dependencies/global_dependencies.json'));
-
-    if (!is_dir('../' . $current)) {
-        downloadToRepo($globals->$current->repository);
-    }
-
-    $make = 'cd ../' . $current . ' && make ' . $action . ' ';
-    $dependencies = $current->dependencies;
-    foreach ($dependencies as $dependency) {
-        execute($dependency, $action, $globals->$dependency->repository);
-    }
-    echo $make . PHP_EOL;
-    exec($make);
+   return rapido($project, $command, null, 0);
 }
 
 
@@ -31,4 +19,18 @@ function downloadToRepo($repository)
     exec('cd .. && git clone ' . $repository);
 }
 
-execute($current, $action);
+function rapido($project, $command, string $repository = null, $lvl = 0)
+{
+
+    $dependencies = json_decode(file_get_contents($project.'/'.$project.'_dependencies.json'), true);
+
+    $make = $lvl > 0 ? 'make -C ../'.$project.' '.$command : '';
+    foreach ($dependencies as $dependency) {
+        $tmp2 =  rapido($dependency['path'], $command,null, ++$lvl);
+        $tmp1 = $tmp2. ($make ? ' && ': '') .$make;
+        $make = $tmp1;
+    }
+
+    return $make;
+}
+echo execute($project, $command);

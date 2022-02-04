@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  project_dependencies:
+    build:
+      context: ./project-dependencies
+    container_name: 'project_dependencies'
