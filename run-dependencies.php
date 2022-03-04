@@ -3,32 +3,23 @@
 $project = $argv[1];
 $command = $argv[2];
 
-/**
- * @param $current
- * @param $action
- * @param string|null $repository
- */
-function runDependencies($project, $command, string $repository = null)
+function runDependencies(string $project, string $command): string
 {
-    return execute($project, $command, null, 0);
+    return execute($project, $command);
 }
 
-
-//function downloadToRepo($repository)
-//{
-//    exec('cd .. && git clone ' . $repository);
-//}
-
-function execute($project, $command, string $repository = null, $lvl = 0): string
+function execute($project, $command): string
 {
     $dependencies = json_decode(file_get_contents($project . '/' . $project . '_dependencies.json'), true);
-    $make = $lvl > 0 ? 'make -C ../' . $project . ' ' . $command : '';
     foreach ($dependencies as $dependency) {
-        $tmp = execute($dependency['path'], $command, null, ++$lvl);
-        $make = $tmp . ($make ? ' && ' : '') . $make;
+        if (is_dir($dependency['path'])) {
+            return 'make -C ../' . $dependency['path'] . ' ' . $command. ' ';
+        } else {
+            return 'cd ../ && git clone ' . $dependency['repository'] . ' && cd ' . $dependency['path'] . ' && make install && make ' . $command;
+        }
     }
 
-    return $make;
+    return '';
 }
 
 echo runDependencies($project, $command);
