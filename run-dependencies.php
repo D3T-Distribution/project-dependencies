@@ -9,9 +9,16 @@ function runDependencies($project, $command, $latests = null): string
     $projectsPath = $_ENV['PROJECTS_PATH'] ?? '/mnt/projects/';
     $latests = $latests ? $project . ',' . $latests : $project;
 
-    $dependencies = json_decode(file_get_contents($projectsPath . $project . '/dependencies.json'), true);
-    foreach ($dependencies as $dependency) {
-        if (!str_contains($latests, $dependency['path'])) {
+    $file = $projectsPath . $project . '/.dependencies';
+    if (file_exists($file . '.local')) {
+        $file .= '.local';
+    } else if (!file_exists($file)){
+        return '';
+    }
+
+    $dependencies = json_decode(file_get_contents($file), true);
+    foreach ($dependencies as $name => $dependency) {
+        if (!str_contains($latests, $name)) {
             if (is_dir($projectsPath . $dependency['path'])) {
                 return 'make -C ../' . $dependency['path'] . ' DEPENDENCIES=' . $latests . ' ' . $command;
             } else {
